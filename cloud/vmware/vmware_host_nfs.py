@@ -75,19 +75,17 @@ options:
 '''
 
 EXAMPLES = '''
-# Example vmware_dvs_host command from Ansible Playbooks
-- name: Add Host to dVS
-  local_action:
-    module: vmware_dvs_host
+# Example vmware_host_nfs command from Ansible Playbooks
+- name: Mount NFS datastore to host
+  vmware_host_nfs:
+    state: present
     hostname: vcenter_ip_or_hostname
     username: vcenter_username
     password: vcenter_password
     esxi_hostname: esxi_hostname_as_listed_in_vcenter
-    switch_name: dvSwitch
-    vmnics:
-        - vmnic0
-        - vmnic1
-    state: present
+    datastore_name: name_of_target_datastore
+    nfs_server: hostname_fqdn_or_ip_of_nfs_server
+    nfs_path: path_on_nfs_server
 '''
 
 try:
@@ -168,8 +166,7 @@ def check_datastore_status(module):
 
 def main():
     argument_spec = vmware_argument_spec()
-    argument_spec.update(dict(datacenter_name=dict(required=True, type='str'),
-                              esxi_hostname=dict(required=True, type='str'),
+    argument_spec.update(dict(esxi_hostname=dict(required=True, type='str'),
                               datastore_name=dict(required=True, type='str'),
                               nfs_server=dict(required=True, type='str'),
                               nfs_path=dict(required=True, type='str'),
