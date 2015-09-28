@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# (c) 2015, Yves Fauser <yfauser () vmware.com>
+# Copyright (c) 2015 VMware, Inc. All Rights Reserved.
 #
 # This file is part of Ansible
 #
